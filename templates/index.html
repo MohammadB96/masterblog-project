@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Flask Blog</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <h1>Blog Posts</h1>
+
+    <a href="{{ url_for('add') }}" class="add-post-button" style="display: inline-block; margin-bottom: 20px; text-decoration: none; color: white; padding: 10px 20px; background-color: #007bff; border-radius: 5px;">Add New Post</a>
+
+    <div class="card-container">
+        {% for post in posts %}
+            <div class="post">
+                <div class="card-header">
+                    <h2>{{ post.title }}</h2>
+                    <p><strong>Author:</strong> {{ post.author }}</p>
+                </div>
+                <div class="card-body">
+                    <p>{{ post.content }}</p>
+                    <p><strong><a style="color: blue;" href="{{ url_for('update', post_id=post['id']) }}" class="add-post-button">Update post</a></strong> | <i><a style="color: red;" href="{{ url_for('delete', post_id=post['id']) }}" class="add-post-button">Delete post</a></i></p>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</body>
+</html>
